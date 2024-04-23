@@ -1,0 +1,126 @@
+<div class="userInformation">
+    <h1>Reactive form example</h1>
+    <!-- <div class="btnDiv">
+        <button class="clearBtn" (click)="Reset()">Add User</button>
+    </div> -->
+  </div>
+  <div class="main">
+  <div class="container">
+    <div class="items">
+        <form [formGroup]="formDetail">
+            <div class="item">
+                <label for="firstName">First Name</label>
+                <input type="text" placeholder="FirstName" id="firstName" formControlName="firstName" (keypress)="isAlpha($event)">
+                <ng-container *ngIf="formDetail.controls.firstName!.invalid && formDetail.controls.firstName!.touched">
+                    <span class="error" *ngIf="formDetail.controls.firstName.errors!.required" class="error">Required</span>
+                    <span class="error" *ngIf="formDetail.controls.firstName.errors!.minlength" class="error">Min length is 3</span>
+                    <span class="error" *ngIf="formDetail.controls.firstName.errors!.maxlength">Max length is 16</span>
+                
+                </ng-container>
+            </div>
+            <div class="item">
+                <label for="lastName">Last Name</label>
+                <input type="text" placeholder="Lastname" id="lastName" formControlName="lastName" (keypress)="isAlpha($event)">
+                <ng-container *ngIf="formDetail.controls.lastName!.invalid && formDetail.controls.lastName!.touched">
+                    <span class="error" *ngIf="formDetail.controls.lastName.errors!.required">Required</span>
+                    <span class="error" *ngIf="formDetail.controls.lastName.errors!.minlength">Min length is 3</span>
+                    <span class="error" *ngIf="formDetail.controls.lastName.errors!.maxlength">Max Length is 16</span>
+  
+                </ng-container>
+            </div>
+            
+            <div class="item">
+                <label for="email">Email</label>
+                <input type="email" placeholder="Email" id="email" formControlName="email">
+                <ng-container *ngIf="formDetail.controls.email!.invalid && formDetail.controls.email!.touched">
+                    <span class="error" *ngIf="formDetail.controls.email.errors!.required">Required</span>
+                    <span class="error" *ngIf="formDetail.controls.email.errors!.email">Please enter valid email</span>
+                </ng-container>
+            </div>
+            <div class="item">
+                <label for="mobileNumber">Phone</label>
+            <input type="text" placeholder="MobileNumber" id="mobileNumber" formControlName="mobileNumber" (keypress)="isNum($event)" maxlength="10"> </div>
+            <ng-container *ngIf="formDetail.controls.mobileNumber!.invalid && formDetail.controls.mobileNumber!.touched">
+                <span class="error" *ngIf="formDetail.controls.mobileNumber.errors!.required">Required</span>
+                <span class="error" *ngIf="formDetail.controls.mobileNumber.errors!.minlength">Min length is 10</span>
+            </ng-container>
+            <div class="item">
+                <label for="company">Company</label>
+                <input type="text" placeholder="company" id="company" formControlName="company" (keypress)="isAlpha($event)">
+                <ng-container *ngIf="formDetail.controls.company!.invalid && formDetail.controls.company!.touched">
+                    <span class="error" *ngIf="formDetail.controls.company.errors!.required" class="error">Required</span>
+                    <span class="error" *ngIf="formDetail.controls.company.errors!.minlength" class="error">Min length is 3</span>
+                    <span class="error" *ngIf="formDetail.controls.company.errors!.maxlength">Max length is 16</span>
+                
+                </ng-container>
+            </div>
+            <div>
+                <label>Gender:</label><br>
+                <input type="radio" id="male" value="male" formControlName="gender">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" value="female" formControlName="gender">
+                <label for="female">Female</label><br>
+            </div><br>
+            <div class="item">
+                <label for="dob">DOB</label>
+                <input type="date" placeholder="dob" id="dob" formControlName="dob" (keypress)="isAlpha($event)">
+                <ng-container *ngIf="formDetail.controls.dob!.invalid && formDetail.controls.dob!.touched">
+                    <span class="error" *ngIf="formDetail.controls.dob.errors!.required" class="error">Required</span>
+                    <span class="error" *ngIf="formDetail.controls.dob.errors!.minlength" class="error">Min length is 3</span>
+                    <span class="error" *ngIf="formDetail.controls.dob.errors!.maxlength">Max length is 16</span>
+                
+                </ng-container>
+            </div>
+            <div class="item">
+                <label for="password">Password</label>
+                <input type="password" placeholder="password" id="password" formControlName="password">
+                <ng-container *ngIf="formDetail.controls.password!.invalid && formDetail.controls.password!.touched">
+                    <span class="error" *ngIf="formDetail.controls.password.errors!.required" class="error">Required</span>
+                    <span class="error" *ngIf="formDetail.controls.password.errors!.minlength" class="error">Min length is 3</span>
+                    <span class="error" *ngIf="formDetail.controls.password.errors!.maxlength">Max length is 16</span>
+                
+                </ng-container>
+            </div>
+            <div class="item">
+                <label for="conpassword">Confirm  Password</label>
+                <input type="password" placeholder="conpassword" id="conpassword" formControlName="conpassword">
+                <ng-container *ngIf="formDetail.controls.conpassword!.invalid && formDetail.controls.conpassword!.touched">
+                    <span class="error" *ngIf="formDetail.controls.conpassword.errors!.required" class="error">Required</span>
+                    <span class="error" *ngIf="formDetail.controls.conpassword.errors!.minlength" class="error">Min length is 3</span>
+                    <span class="error" *ngIf="formDetail.controls.conpassword.errors!.maxlength">Max length is 16</span>
+                
+                </ng-container>
+            </div>
+            <div class="btnDiv">
+                <button class="saveBtn" [disabled]="formDetail.invalid" (click)="handleSave(formDetail.value.id)">{{formDetail.value.id ? 'Update' :'Save'}}</button>
+                <button class="clearBtn" (click)="clearData()">Cancle</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="itemDiv">
+        <table>
+            <thead>
+                <tr>
+                    <th *ngFor="let label of columnField">
+                        {{label.label}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let person of existPersonList">
+                    <td *ngFor="let field of columnField">
+                        <ng-container *ngIf="field.field==='action';else personDetail"> 
+                            <button id="edit" (click)="editData(person)">Edit</button>
+                            <button (click)="handleDelete(person.id)">Delete</button>
+                        </ng-container>
+                     <ng-template #personDetail>{{
+                        person[field.field]}}</ng-template>
+                       
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+   
+  </div>
+  </div>

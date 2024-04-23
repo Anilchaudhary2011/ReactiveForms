@@ -1,0 +1,63 @@
+.userInformation{
+    display: flex;
+    justify-content: flex-start;
+}
+.logoutBtn{
+    cursor: pointer;
+    margin-left: 4px;
+    color: blueviolet;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+   
+}
+.item{
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+}
+.btnDiv{
+    display: flex;
+    margin-top: 4px;
+}
+.saveBtn{
+    width: 49%;
+    margin-right: 4px;
+}
+.clearBtn{
+    width: 50%;
+}
+.error{
+    color: red;
+    margin-left: 4px;
+}
+.main{
+    display: flex;
+    justify-content: flex-start;
+    font-size: 15px;
+}
+.items{
+    width: 200px;
+}
+.itemDiv{
+    margin-top: 8px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+  background-color: red;
+
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
